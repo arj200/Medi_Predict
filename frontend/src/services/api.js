@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 // In your api.js, change the base URL to just the domain
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';  // Remove /api
+const API_BASE_URL = process.env.REACT_APP_API_URL || 
+  (process.env.NODE_ENV === 'production' 
+    ? 'https://medi-predict-dkpf.onrender.com'  // ✅ Your Render backend
+    : 'http://localhost:5000');
 
 console.log('🔧 API Base URL:', API_BASE_URL);
 
@@ -306,3 +309,4 @@ export const getDiseaseInfo = async () => {
 };
 
 export default api;
+
