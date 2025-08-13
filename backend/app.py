@@ -534,7 +534,6 @@ def patient_predict(disease):
     
 #PATIENT STATS
 @app.route('/patient/stats', methods=['GET'])
-@login_required
 def get_patient_stats():
     """Get patient statistics"""
     try:
