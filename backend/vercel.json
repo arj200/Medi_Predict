@@ -2,17 +2,25 @@
   "version": 2,
   "builds": [
     {
-      "src": "app.py",
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "frontend/build"
+      }
+    },
+    {
+      "src": "backend/app.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/backend/app.py"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/app.py"
+      "dest": "/frontend/build/index.html"
     }
-  ],
-  "env": {
-    "PYTHON_VERSION": "3.11"
-  }
+  ]
 }
